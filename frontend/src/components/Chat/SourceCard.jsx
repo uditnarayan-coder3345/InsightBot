@@ -1,0 +1,2 @@
+import { FileText } from 'lucide-react';
+export default function SourceCard({ source }) { return <article className="source-card"><span className="source-kicker pixel-label">SOURCE DOCUMENT</span><div className="source-file"><span className="source-icon"><FileText size={18} /></span><span className="source-name">{source.name}</span><span className="source-page">Page {source.page}</span></div><span className="source-note">Answer grounded in this document</span></article>; }

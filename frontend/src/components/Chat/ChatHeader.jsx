@@ -1,0 +1,6 @@
+import { Menu, Upload } from 'lucide-react';
+import Avatar from '../common/Avatar';
+export default function ChatHeader({ onMenuClick, backendStatus, onDocumentSelected, uploading }) {
+  const openFilePicker = () => document.getElementById('document-picker')?.click();
+  return <header className="chat-header"><div className="header-title"><button type="button" className="icon-button menu-button" aria-label="Open sidebar" onClick={onMenuClick}><Menu size={21} /></button><div><p className="pixel-label header-brand">INSIGHTBOT AI</p><span className="header-subtitle">DOCUMENT ASSISTANT</span></div><span className={`backend-indicator backend-${backendStatus}`} title={`Backend ${backendStatus}`} aria-label={`Backend ${backendStatus}`} />{backendStatus === 'offline' && <span className="backend-unavailable">Backend unavailable</span>}</div><div className="header-actions"><button type="button" className="upload-button" onClick={openFilePicker} disabled={uploading}><Upload size={16} /><span>{uploading ? 'Uploading…' : 'Upload Document'}</span></button><input id="header-document-picker" type="file" accept=".pdf,.doc,.docx,.txt" hidden onChange={(event) => { const file = event.target.files?.[0]; if (file) onDocumentSelected(file); event.target.value = ''; }} /><Avatar label="U" className="header-avatar" /></div></header>;
+}

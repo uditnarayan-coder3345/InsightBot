@@ -1,0 +1,5 @@
+import ChatHistoryItem from './ChatHistoryItem';
+const groups = ['TODAY', 'YESTERDAY', 'PREVIOUS 7 DAYS', 'OLDER'];
+export default function ChatHistory({ chats, activeChatId, onSelectChat, onRenameChat, onDeleteChat, loading, renamingId }) {
+  return <div className="history-wrap"><p className="pixel-label history-title">RECENT CHATS</p><nav className="history-scroll" aria-label="Recent conversations">{loading ? <p className="history-loading">Loading conversations…</p> : chats.length === 0 ? <p className="history-loading">Your conversations will appear here.</p> : groups.map((group) => { const items = chats.filter((chat) => chat.group === group); return items.length ? <section className="history-group" key={group} aria-label={group.toLowerCase()}><h2 className="pixel-label group-label">{group}</h2>{items.map((chat) => <ChatHistoryItem key={chat.id} chat={chat} active={activeChatId === chat.id} onClick={() => onSelectChat(chat.id)} onRename={onRenameChat} onDelete={onDeleteChat} renaming={renamingId === chat.id} />)}</section> : null; })}</nav></div>;
+}

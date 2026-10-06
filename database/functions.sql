@@ -1,0 +1,3 @@
+-- No database functions are needed for this foundation stage.
+-- Define vector search/RPC functions after selecting the Gemini embedding model and
+-- its exact vector dimension. Do not create a vector index until then.

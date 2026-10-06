@@ -1,0 +1,14 @@
+import { Router } from 'express';
+import { createChat, createMessage, getChat, listChats, regenerateMessage, removeChat, updateChat } from '../controllers/chatController.js';
+import { asyncHandler } from '../middleware/asyncHandler.js';
+import { requireUser } from '../middleware/authMiddleware.js';
+const router = Router();
+router.use(requireUser);
+router.get('/', asyncHandler(listChats));
+router.post('/', asyncHandler(createChat));
+router.patch('/:id', asyncHandler(updateChat));
+router.get('/:id', asyncHandler(getChat));
+router.delete('/:id', asyncHandler(removeChat));
+router.post('/:id/messages/:messageId/regenerate', asyncHandler(regenerateMessage));
+router.post('/:id/messages', asyncHandler(createMessage));
+export default router;
